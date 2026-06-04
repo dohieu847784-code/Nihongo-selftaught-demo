@@ -117,10 +117,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;ba
           <div style="font-size:13px;color:var(--text2)">Bạn đang học tiếng Nhật — tiếp tục nhé! 🌸</div>
         </div>
         <div class="g4" style="margin-bottom:18px">
-          <div class="sbox" style="background:var(--red-bg)"><div class="sn" style="color:var(--red-dk)">127</div><div class="sl" style="color:var(--red-dk)">Từ đã học</div></div>
-          <div class="sbox" style="background:var(--amber-bg)"><div class="sn" style="color:var(--amber-dk)">43</div><div class="sl" style="color:var(--amber-dk)">Kanji đã học</div></div>
-          <div class="sbox" style="background:var(--green-bg)"><div class="sn" style="color:var(--green-dk)">18</div><div class="sl" style="color:var(--green-dk)">Ngữ pháp</div></div>
-          <div class="sbox" style="background:var(--blue-bg)"><div class="sn" style="color:var(--blue-dk)">84%</div><div class="sl" style="color:var(--blue-dk)">Tỷ lệ đúng</div></div>
+          <div class="sbox" style="background:var(--red-bg)"><div class="sn" style="color:var(--red-dk)" id="st-vocab">0</div><div class="sl" style="color:var(--red-dk)">Từ đã học</div></div>
+          <div class="sbox" style="background:var(--amber-bg)"><div class="sn" style="color:var(--amber-dk)" id="st-kanji">0</div><div class="sl" style="color:var(--amber-dk)">Kanji đã học</div></div>
+          <div class="sbox" style="background:var(--green-bg)"><div class="sn" style="color:var(--green-dk)" id="st-grammar">0</div><div class="sl" style="color:var(--green-dk)">Ngữ pháp</div></div>
+          <div class="sbox" style="background:var(--blue-bg)"><div class="sn" style="color:var(--blue-dk)" id="st-accuracy">0%</div><div class="sl" style="color:var(--blue-dk)">Tỷ lệ đúng</div></div>
         </div>
         <div class="g2" style="margin-bottom:18px">
           <div class="card">
@@ -144,11 +144,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;ba
           </div>
           <div class="card">
             <div style="font-size:13px;font-weight:700;margin-bottom:12px">📈 Tiến độ N5</div>
-            <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span>Từ vựng</span><span style="color:var(--text2)">78%</span></div><div class="pbar"><div class="pfill" style="width:78%;background:var(--red)"></div></div></div>
-            <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span>Kanji</span><span style="color:var(--text2)">55%</span></div><div class="pbar"><div class="pfill" style="width:55%;background:var(--amber)"></div></div></div>
-            <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span>Ngữ pháp</span><span style="color:var(--text2)">62%</span></div><div class="pbar"><div class="pfill" style="width:62%;background:var(--green)"></div></div></div>
-            <div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span>Trắc nghiệm</span><span style="color:var(--text2)">84%</span></div><div class="pbar"><div class="pfill" style="width:84%;background:var(--blue)"></div></div></div>
-            <div style="border-top:1px solid var(--border);padding-top:10px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><span style="font-size:12px;color:var(--text2)">Tổng thể N5</span><span style="font-size:20px;font-weight:700;color:var(--red)">62%</span></div><div class="pbar" style="height:10px"><div class="pfill" style="width:62%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div></div>
+            <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span>Từ vựng</span><span style="color:var(--text2)" id="dp-vocab-pct">0%</span></div><div class="pbar"><div class="pfill" id="dp-vocab-bar" style="width:0%;background:var(--red)"></div></div></div>
+            <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span>Kanji</span><span style="color:var(--text2)" id="dp-kanji-pct">0%</span></div><div class="pbar"><div class="pfill" id="dp-kanji-bar" style="width:0%;background:var(--amber)"></div></div></div>
+            <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span>Ngữ pháp</span><span style="color:var(--text2)" id="dp-grammar-pct">0%</span></div><div class="pbar"><div class="pfill" id="dp-grammar-bar" style="width:0%;background:var(--green)"></div></div></div>
+            <div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span>Trắc nghiệm</span><span style="color:var(--text2)" id="dp-quiz-pct">0%</span></div><div class="pbar"><div class="pfill" id="dp-quiz-bar" style="width:0%;background:var(--blue)"></div></div></div>
+            <div style="border-top:1px solid var(--border);padding-top:10px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><span style="font-size:12px;color:var(--text2)">Tổng thể N5</span><span style="font-size:20px;font-weight:700;color:var(--red)" id="dp-overall">0%</span></div><div class="pbar" style="height:10px"><div class="pfill" id="dp-overall-bar" style="width:0%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div></div>
           </div>
         </div>
         <div style="font-size:13px;font-weight:700;margin-bottom:10px">🗺️ Lộ trình N5</div>
@@ -167,7 +167,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;ba
             </div>
             <div id="vm-meaning" style="font-size:20px;font-weight:700;color:var(--red);margin-bottom:14px"></div>
             <div id="vm-example" style="background:var(--bg2);border-left:3px solid var(--amber);padding:10px 12px;border-radius:0 var(--rs) var(--rs) 0;margin-bottom:12px"></div>
-            <div id="vm-tags"></div>
+            <div id="vm-tags" style="margin-bottom:14px"></div>
+            <button id="vm-learn-btn" class="btn btn-g" style="width:100%;padding:10px;font-size:13px"></button>
           </div>
         </div>
       </div>
@@ -197,12 +198,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;ba
       <div id="page-progress" class="page">
         <div style="background:var(--text);color:#fff;border-radius:var(--r);padding:18px 20px;margin-bottom:16px">
           <div style="font-size:10px;letter-spacing:1.5px;color:#fac775;text-transform:uppercase;font-weight:700;margin-bottom:6px">🎯 Phân tích — trình độ hiện tại</div>
-          <div style="font-size:14px;line-height:1.8;margin-bottom:12px">Bạn đang ở khoảng <strong style="color:#fac775">62% N5</strong>. Điểm mạnh: <strong style="color:#fac775">từ vựng cơ bản</strong> và kanji số đếm. Cần cải thiện: <strong style="color:#fac775">trợ từ に / で</strong>.</div>
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;gap:8px;align-items:center;padding:7px 10px;background:rgba(255,255,255,.07);border-radius:var(--rs);font-size:12px"><span style="color:#fac775;font-weight:700">→</span>Ôn trợ từ に / で — làm 5 bài điền trợ từ hôm nay</div>
-            <div style="display:flex;gap:8px;align-items:center;padding:7px 10px;background:rgba(255,255,255,.07);border-radius:var(--rs);font-size:12px"><span style="color:#fac775;font-weight:700">→</span>Học 10 từ vựng chủ đề Gia đình còn lại</div>
-            <div style="display:flex;gap:8px;align-items:center;padding:7px 10px;background:rgba(255,255,255,.07);border-radius:var(--rs);font-size:12px"><span style="color:#fac775;font-weight:700">→</span>Ôn 8 thẻ flashcard đang ở trạng thái Khó</div>
-          </div>
+          <div id="prog-analysis" style="font-size:14px;line-height:1.8;margin-bottom:12px"></div>
+          <div id="prog-suggests" style="display:flex;flex-direction:column;gap:6px"></div>
         </div>
         <div class="g2">
           <div class="card">
@@ -213,20 +210,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;ba
             <div class="card" style="margin-bottom:14px">
               <div style="font-size:13px;font-weight:700;margin-bottom:12px">📅 Thống kê</div>
               <div style="display:flex;flex-direction:column;gap:0">
-                <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px"><span style="color:var(--text2)">Từ đã học</span><span style="font-weight:700">127 từ</span></div>
-                <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px"><span style="color:var(--text2)">Kanji đã học</span><span style="font-weight:700">43 kanji</span></div>
-                <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px"><span style="color:var(--text2)">Học liên tiếp</span><span style="font-weight:700">🔥 7 ngày</span></div>
-                <div style="display:flex;justify-content:space-between;padding:7px 0;font-size:13px"><span style="color:var(--text2)">Tổng điểm</span><span style="font-weight:700">⚡ 1,240 XP</span></div>
+                <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px"><span style="color:var(--text2)">Từ đã học</span><span style="font-weight:700" id="pg-vocab">0 từ</span></div>
+                <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px"><span style="color:var(--text2)">Kanji đã học</span><span style="font-weight:700" id="pg-kanji">0 kanji</span></div>
+                <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px"><span style="color:var(--text2)">Câu quiz đúng</span><span style="font-weight:700" id="pg-quiz">0 câu</span></div>
+                <div style="display:flex;justify-content:space-between;padding:7px 0;font-size:13px"><span style="color:var(--text2)">Tổng điểm</span><span style="font-weight:700" id="pg-xp">⚡ 0 XP</span></div>
               </div>
             </div>
-            <div class="card">
+            <div class="card" style="margin-bottom:14px">
               <div style="font-size:13px;font-weight:700;margin-bottom:10px">🏅 Huy hiệu</div>
-              <div style="display:flex;gap:16px;flex-wrap:wrap">
-                <div style="text-align:center"><div style="font-size:26px">🔥</div><div style="font-size:10px;color:var(--text2);margin-top:2px">7 ngày</div></div>
-                <div style="text-align:center"><div style="font-size:26px">📖</div><div style="font-size:10px;color:var(--text2);margin-top:2px">100 từ</div></div>
-                <div style="text-align:center"><div style="font-size:26px">漢</div><div style="font-size:10px;color:var(--text2);margin-top:2px">40 kanji</div></div>
-                <div style="text-align:center;opacity:.4"><div style="font-size:26px">🏆</div><div style="font-size:10px;color:var(--text2);margin-top:2px">Sắp có</div></div>
-              </div>
+              <div id="pg-badges" style="display:flex;gap:16px;flex-wrap:wrap"></div>
+            </div>
+            <div class="card">
+              <button class="btn" onclick="confirmReset()" style="width:100%;color:var(--red-dk);border-color:var(--red);font-size:13px;padding:10px">🗑 Reset toàn bộ tiến độ về 0%</button>
             </div>
           </div>
         </div>
@@ -447,11 +442,25 @@ function renderVocab(){
 }
 
 function openVocabModal(v){
+  const p = loadProgress();
+  const learned = p.learnedVocab.includes(v.id);
   el('vm-kanji').textContent=v.kanji;
   el('vm-kana').textContent=v.kana;
   el('vm-meaning').textContent=v.meaning;
   el('vm-example').innerHTML=`<div style="font-family:serif;font-size:14px;margin-bottom:3px">${v.ex}</div><div style="font-size:12px;color:var(--text2)">${v.exVi}</div>`;
   el('vm-tags').innerHTML=`<span class="tag" style="background:var(--red-bg);color:var(--red-dk)">N5</span> <span class="tag" style="background:var(--amber-bg);color:var(--amber-dk);margin-left:5px">${v.topic}</span>`;
+  const btn = el('vm-learn-btn');
+  if(learned){
+    btn.textContent = '✓ Đã thuộc rồi';
+    btn.className = 'btn';
+    btn.style.cssText='width:100%;padding:10px;font-size:13px;color:var(--green-dk);border-color:var(--green)';
+    btn.onclick = null;
+  } else {
+    btn.textContent = '+ Đánh dấu đã học (+5 XP)';
+    btn.className = 'btn btn-g';
+    btn.style.cssText='width:100%;padding:10px;font-size:13px';
+    btn.onclick = ()=>{ markVocabLearned(v.id); openVocabModal(v); };
+  }
   el('vocab-modal').style.display='flex';
 }
 
@@ -482,8 +491,8 @@ function renderKanjiDetail(){
   const det=el('kanji-detail');
   if(selKanji===null){det.style.display='none';return;}
   const k=KANJI[selKanji];
-  det.style.display='flex';
-  det.innerHTML=``;
+  const p=loadProgress();
+  const learned=p.learnedKanji.includes(k.char);
   det.style.cssText='display:flex;gap:16px;align-items:center;background:var(--bg);border:1.5px solid var(--red);border-radius:var(--r);padding:16px';
   det.innerHTML=`
     <div style="font-family:serif;font-size:60px;font-weight:700;line-height:1;flex-shrink:0">${k.char}</div>
@@ -494,7 +503,11 @@ function renderKanjiDetail(){
       </div>
       <div style="font-size:16px;font-weight:700;margin-bottom:6px">${k.meaning}</div>
       <div style="font-size:13px;color:var(--red-dk);margin-bottom:3px">🔴 Âm On: ${k.on}</div>
-      <div style="font-size:13px;color:var(--blue-dk)">🔵 Âm Kun: ${k.kun}</div>
+      <div style="font-size:13px;color:var(--blue-dk);margin-bottom:10px">🔵 Âm Kun: ${k.kun}</div>
+      ${learned
+        ? `<span style="font-size:12px;color:var(--green-dk);font-weight:700">✓ Đã thuộc</span>`
+        : `<button class="btn btn-g" style="font-size:12px;padding:6px 14px" onclick="markKanjiLearned('${k.char}');renderKanjiDetail()">+ Đánh dấu đã thuộc (+5 XP)</button>`
+      }
     </div>
     <button class="btn" onclick="selKanji=null;renderKanjiDetail();document.querySelectorAll('#kanji-grid .card').forEach(c=>c.style.borderColor='var(--border)')">✕</button>`;
 }
@@ -730,12 +743,210 @@ function nextQ(){
   renderQuiz();
 }
 
-// ===== PROGRESS SKILLS =====
-function buildSkills(){
-  const wrap=el('skill-bars');
-  [['Từ vựng',78,'var(--red)','127/800 từ'],['Kanji',55,'var(--amber)','43/100'],['Ngữ pháp',62,'var(--green)','18/30 mẫu'],['Trắc nghiệm',84,'var(--blue)','84% đúng'],['Trợ từ ⚠️',52,'var(--red)','52% — cần ôn']].forEach(([l,v,c,sub])=>{
-    wrap.innerHTML+=`<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="font-weight:600">${l}</span><span style="color:var(--text2)">${sub}</span></div><div class="pbar"><div class="pfill" style="width:${v}%;background:${c}"></div></div></div>`;
+// ===== PROGRESS SYSTEM (localStorage) =====
+const STORAGE_KEY = 'nihongo_progress';
+const TOTAL_VOCAB = VOCAB.length;       // 20
+const TOTAL_KANJI = KANJI.length;       // 20
+const TOTAL_GRAMMAR = GRAMMAR.length;  // 8
+const TOTAL_QUIZ = 100; // denominator for quiz accuracy
+
+function defaultProgress(){
+  return {
+    learnedVocab: [],    // array of vocab IDs marked as learned
+    learnedKanji: [],    // array of kanji chars marked as learned
+    learnedGrammar: [],  // array of grammar indices
+    quizTotal: 0,
+    quizCorrect: 0,
+    xp: 0,
+    fcSessions: 0,
+  };
+}
+
+function loadProgress(){
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) return {...defaultProgress(),...JSON.parse(raw)};
+  } catch(e){}
+  return defaultProgress();
+}
+
+function saveProgress(p){
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch(e){}
+}
+
+function computeStats(p){
+  const vPct  = Math.round(p.learnedVocab.length / TOTAL_VOCAB * 100);
+  const kPct  = Math.round(p.learnedKanji.length / TOTAL_KANJI * 100);
+  const gPct  = Math.round(p.learnedGrammar.length / TOTAL_GRAMMAR * 100);
+  const qPct  = p.quizTotal > 0 ? Math.round(p.quizCorrect / p.quizTotal * 100) : 0;
+  const overall = Math.round((vPct + kPct + gPct + qPct) / 4);
+  return {vPct, kPct, gPct, qPct, overall};
+}
+
+function refreshAllUI(){
+  const p = loadProgress();
+  const {vPct, kPct, gPct, qPct, overall} = computeStats(p);
+
+  // sidebar logo
+  document.querySelector('.logo-sub').textContent = `N5 · ${overall}% hoàn thành`;
+
+  // dashboard stats
+  if(el('st-vocab'))    el('st-vocab').textContent    = p.learnedVocab.length;
+  if(el('st-kanji'))    el('st-kanji').textContent    = p.learnedKanji.length;
+  if(el('st-grammar'))  el('st-grammar').textContent  = p.learnedGrammar.length;
+  if(el('st-accuracy')) el('st-accuracy').textContent = qPct + '%';
+
+  // dashboard progress bars
+  function setBar(pctId, barId, val){
+    if(el(pctId)) el(pctId).textContent = val + '%';
+    if(el(barId)) el(barId).style.width = val + '%';
+  }
+  setBar('dp-vocab-pct',   'dp-vocab-bar',   vPct);
+  setBar('dp-kanji-pct',   'dp-kanji-bar',   kPct);
+  setBar('dp-grammar-pct', 'dp-grammar-bar', gPct);
+  setBar('dp-quiz-pct',    'dp-quiz-bar',    qPct);
+  if(el('dp-overall'))     el('dp-overall').textContent    = overall + '%';
+  if(el('dp-overall-bar')) el('dp-overall-bar').style.width = overall + '%';
+
+  // progress page stats
+  if(el('pg-vocab'))   el('pg-vocab').textContent   = p.learnedVocab.length + ' từ';
+  if(el('pg-kanji'))   el('pg-kanji').textContent   = p.learnedKanji.length + ' kanji';
+  if(el('pg-quiz'))    el('pg-quiz').textContent    = p.quizCorrect + ' / ' + p.quizTotal + ' câu';
+  if(el('pg-xp'))      el('pg-xp').textContent      = '⚡ ' + p.xp + ' XP';
+
+  // xp pill topbar
+  document.querySelector('.xppill').textContent = '⚡ ' + p.xp + ' XP';
+
+  // skill bars
+  buildSkills(vPct, kPct, gPct, qPct);
+
+  // analysis box
+  buildAnalysis(p, overall, vPct, kPct, gPct, qPct);
+
+  // badges
+  buildBadges(p);
+}
+
+function buildAnalysis(p, overall, vPct, kPct, gPct, qPct){
+  const an = el('prog-analysis');
+  const su = el('prog-suggests');
+  if(!an || !su) return;
+
+  if(overall === 0){
+    an.innerHTML = 'Bạn chưa bắt đầu học. Hãy vào <strong style="color:#fac775">Từ vựng</strong> hoặc <strong style="color:#fac775">Flashcard</strong> để bắt đầu!';
+    su.innerHTML = `
+      <div style="display:flex;gap:8px;align-items:center;padding:7px 10px;background:rgba(255,255,255,.07);border-radius:var(--rs);font-size:12px"><span style="color:#fac775;font-weight:700">→</span>Học từ vựng N5 đầu tiên</div>
+      <div style="display:flex;gap:8px;align-items:center;padding:7px 10px;background:rgba(255,255,255,.07);border-radius:var(--rs);font-size:12px"><span style="color:#fac775;font-weight:700">→</span>Làm quen với Kanji cơ bản</div>
+      <div style="display:flex;gap:8px;align-items:center;padding:7px 10px;background:rgba(255,255,255,.07);border-radius:var(--rs);font-size:12px"><span style="color:#fac775;font-weight:700">→</span>Thử 10 câu trắc nghiệm đầu tiên</div>`;
+    return;
+  }
+
+  const weak = [[vPct,'từ vựng'],[kPct,'kanji'],[gPct,'ngữ pháp'],[qPct,'trắc nghiệm']].sort((a,b)=>a[0]-b[0]);
+  const strong = [...weak].reverse()[0];
+  an.innerHTML = `Bạn đang ở khoảng <strong style="color:#fac775">${overall}% N5</strong>. Điểm mạnh: <strong style="color:#fac775">${strong[1]}</strong>. Cần cải thiện: <strong style="color:#fac775">${weak[0][1]}</strong>.`;
+
+  const tips = [];
+  if(vPct < 50) tips.push('Học thêm từ vựng — mục tiêu 50% trước');
+  if(kPct < 50) tips.push('Ôn thêm kanji — nhấn vào từng ô để xem chi tiết');
+  if(gPct < 50) tips.push('Đọc thêm ngữ pháp — mở accordion để xem ví dụ');
+  if(qPct < 60) tips.push('Luyện thêm trắc nghiệm để tăng tỷ lệ đúng');
+  if(tips.length === 0) tips.push('Tuyệt vời! Tiếp tục ôn flashcard mỗi ngày','Thử làm thêm trắc nghiệm tổng hợp','Sắp hoàn thành N5 rồi!');
+
+  su.innerHTML = tips.slice(0,3).map(t=>`<div style="display:flex;gap:8px;align-items:center;padding:7px 10px;background:rgba(255,255,255,.07);border-radius:var(--rs);font-size:12px"><span style="color:#fac775;font-weight:700">→</span>${t}</div>`).join('');
+}
+
+function buildSkills(vPct, kPct, gPct, qPct){
+  const wrap = el('skill-bars');
+  if(!wrap) return;
+  wrap.innerHTML = '';
+  [['Từ vựng', vPct, 'var(--red)', VOCAB.length+'/'+TOTAL_VOCAB+' từ'],
+   ['Kanji',   kPct, 'var(--amber)', KANJI.length+'/'+TOTAL_KANJI+' kanji'],
+   ['Ngữ pháp',gPct, 'var(--green)', GRAMMAR.length+'/'+TOTAL_GRAMMAR+' mẫu'],
+   ['Trắc nghiệm', qPct, 'var(--blue)', qPct+'% đúng'],
+  ].forEach(([l,v,c,sub])=>{
+    wrap.innerHTML += `<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="font-weight:600">${l}</span><span style="color:var(--text2)">${sub}</span></div><div class="pbar"><div class="pfill" style="width:${v}%;background:${c}"></div></div></div>`;
   });
+}
+
+function buildBadges(p){
+  const wrap = el('pg-badges');
+  if(!wrap) return;
+  const badges = [
+    {ic:'📖', label:'10 từ',   earned: p.learnedVocab.length >= 10},
+    {ic:'📗', label:'20 từ',   earned: p.learnedVocab.length >= 20},
+    {ic:'漢',  label:'10 kanji',earned: p.learnedKanji.length >= 10},
+    {ic:'漢',  label:'20 kanji',earned: p.learnedKanji.length >= 20},
+    {ic:'✅',  label:'10 câu đúng', earned: p.quizCorrect >= 10},
+    {ic:'🏆',  label:'50 câu đúng', earned: p.quizCorrect >= 50},
+    {ic:'🃏',  label:'1 phiên FC', earned: p.fcSessions >= 1},
+    {ic:'⚡',  label:'100 XP', earned: p.xp >= 100},
+  ];
+  wrap.innerHTML = badges.map(b=>`
+    <div style="text-align:center;opacity:${b.earned?1:.3}" title="${b.earned?'Đã đạt!':'Chưa đạt'}">
+      <div style="font-size:24px">${b.ic}</div>
+      <div style="font-size:10px;color:var(--text2);margin-top:2px">${b.label}</div>
+    </div>`).join('');
+}
+
+// ===== MARK VOCAB AS LEARNED (from modal) =====
+function markVocabLearned(vocabId){
+  const p = loadProgress();
+  if(!p.learnedVocab.includes(vocabId)){
+    p.learnedVocab.push(vocabId);
+    p.xp += 5;
+    saveProgress(p);
+    refreshAllUI();
+  }
+}
+
+// ===== MARK KANJI AS LEARNED =====
+function markKanjiLearned(char){
+  const p = loadProgress();
+  if(!p.learnedKanji.includes(char)){
+    p.learnedKanji.push(char);
+    p.xp += 5;
+    saveProgress(p);
+    refreshAllUI();
+  }
+}
+
+// ===== MARK GRAMMAR AS LEARNED =====
+function markGrammarLearned(idx){
+  const p = loadProgress();
+  if(!p.learnedGrammar.includes(idx)){
+    p.learnedGrammar.push(idx);
+    p.xp += 10;
+    saveProgress(p);
+    refreshAllUI();
+  }
+}
+
+// ===== SAVE QUIZ RESULT =====
+function saveQuizResult(correct, total){
+  const p = loadProgress();
+  p.quizTotal += total;
+  p.quizCorrect += correct;
+  p.xp += correct * 3;
+  saveProgress(p);
+  refreshAllUI();
+}
+
+// ===== SAVE FC SESSION =====
+function saveFCSession(good){
+  const p = loadProgress();
+  p.fcSessions++;
+  p.xp += good * 2;
+  saveProgress(p);
+  refreshAllUI();
+}
+
+// ===== RESET =====
+function confirmReset(){
+  if(confirm('Xác nhận reset toàn bộ tiến độ về 0%? Dữ liệu sẽ mất hết.')){
+    localStorage.removeItem(STORAGE_KEY);
+    refreshAllUI();
+    alert('Đã reset thành công! Tiến độ về 0%.');
+  }
 }
 
 // ===== INIT =====
@@ -746,7 +957,7 @@ buildKanji();
 buildGrammar();
 buildFlashcard();
 buildQuiz();
-buildSkills();
+refreshAllUI();
 </script>
 </body>
 </html>
