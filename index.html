@@ -265,26 +265,26 @@ const VOCAB=[
 ];
 
 const KANJI=[
-  {char:'日',on:'ニチ・ジツ',kun:'ひ・か',meaning:'Mặt trời / Ngày',strokes:4,status:'known'},
-  {char:'本',on:'ホン',kun:'もと',meaning:'Sách / Gốc',strokes:5,status:'known'},
-  {char:'人',on:'ジン・ニン',kun:'ひと',meaning:'Người',strokes:2,status:'known'},
-  {char:'山',on:'サン',kun:'やま',meaning:'Núi',strokes:3,status:'known'},
-  {char:'水',on:'スイ',kun:'みず',meaning:'Nước',strokes:4,status:'known'},
-  {char:'火',on:'カ',kun:'ひ',meaning:'Lửa',strokes:4,status:'learning'},
-  {char:'木',on:'モク',kun:'き',meaning:'Cây gỗ',strokes:4,status:'learning'},
-  {char:'金',on:'キン',kun:'かね',meaning:'Vàng / Tiền',strokes:8,status:'learning'},
-  {char:'土',on:'ド',kun:'つち',meaning:'Đất',strokes:3,status:'known'},
-  {char:'学',on:'ガク',kun:'まなぶ',meaning:'Học',strokes:8,status:'known'},
-  {char:'校',on:'コウ',kun:'—',meaning:'Trường học',strokes:10,status:'known'},
-  {char:'生',on:'セイ',kun:'いきる',meaning:'Sống / Sinh',strokes:5,status:'known'},
-  {char:'先',on:'セン',kun:'さき',meaning:'Trước / Tiên',strokes:6,status:'known'},
-  {char:'年',on:'ネン',kun:'とし',meaning:'Năm',strokes:6,status:'learning'},
-  {char:'月',on:'ゲツ',kun:'つき',meaning:'Tháng / Trăng',strokes:4,status:'known'},
-  {char:'時',on:'ジ',kun:'とき',meaning:'Giờ',strokes:10,status:'new'},
-  {char:'間',on:'カン',kun:'あいだ',meaning:'Khoảng giữa',strokes:12,status:'new'},
-  {char:'東',on:'トウ',kun:'ひがし',meaning:'Phía đông',strokes:8,status:'new'},
-  {char:'西',on:'セイ',kun:'にし',meaning:'Phía tây',strokes:6,status:'new'},
-  {char:'南',on:'ナン',kun:'みなみ',meaning:'Phía nam',strokes:9,status:'new'},
+  {char:'日',on:'ニチ・ジツ',kun:'ひ・か',meaning:'Mặt trời / Ngày',strokes:4},
+  {char:'本',on:'ホン',kun:'もと',meaning:'Sách / Gốc',strokes:5},
+  {char:'人',on:'ジン・ニン',kun:'ひと',meaning:'Người',strokes:2},
+  {char:'山',on:'サン',kun:'やま',meaning:'Núi',strokes:3},
+  {char:'水',on:'スイ',kun:'みず',meaning:'Nước',strokes:4},
+  {char:'火',on:'カ',kun:'ひ',meaning:'Lửa',strokes:4},
+  {char:'木',on:'モク',kun:'き',meaning:'Cây gỗ',strokes:4},
+  {char:'金',on:'キン',kun:'かね',meaning:'Vàng / Tiền',strokes:8},
+  {char:'土',on:'ド',kun:'つち',meaning:'Đất',strokes:3},
+  {char:'学',on:'ガク',kun:'まなぶ',meaning:'Học',strokes:8},
+  {char:'校',on:'コウ',kun:'—',meaning:'Trường học',strokes:10},
+  {char:'生',on:'セイ',kun:'いきる',meaning:'Sống / Sinh',strokes:5},
+  {char:'先',on:'セン',kun:'さき',meaning:'Trước / Tiên',strokes:6},
+  {char:'年',on:'ネン',kun:'とし',meaning:'Năm',strokes:6},
+  {char:'月',on:'ゲツ',kun:'つき',meaning:'Tháng / Trăng',strokes:4},
+  {char:'時',on:'ジ',kun:'とき',meaning:'Giờ',strokes:10},
+  {char:'間',on:'カン',kun:'あいだ',meaning:'Khoảng giữa',strokes:12},
+  {char:'東',on:'トウ',kun:'ひがし',meaning:'Phía đông',strokes:8},
+  {char:'西',on:'セイ',kun:'にし',meaning:'Phía tây',strokes:6},
+  {char:'南',on:'ナン',kun:'みなみ',meaning:'Phía nam',strokes:9},
 ];
 
 const GRAMMAR=[
@@ -401,7 +401,6 @@ function buildRoadmap(){
 
 // ===== VOCAB =====
 let vocabTopic='all';
-const SC={known:{bg:'var(--green-bg)',c:'var(--green-dk)',lb:'Đã thuộc'},learning:{bg:'var(--amber-bg)',c:'var(--amber-dk)',lb:'Đang học'},new:{bg:'var(--blue-bg)',c:'var(--blue-dk)',lb:'Mới'}};
 const TOPICS=[['all','Tất cả'],['giadinh','👨‍👩‍👧 Gia đình'],['truonghoc','🏫 Trường học'],['sodem','🔢 Số đếm'],['anuong','🍜 Ăn uống'],['dichuyen','🚌 Di chuyển']];
 
 function buildVocabTopics(){
@@ -422,13 +421,18 @@ function buildVocabTopics(){
 function renderVocab(){
   const grid=el('vocab-grid');
   grid.innerHTML='';
+  const p=loadProgress();
   const data=vocabTopic==='all'?VOCAB:VOCAB.filter(v=>v.topic===vocabTopic);
   data.forEach(v=>{
+    const learned=p.learnedVocab.includes(v.id);
+    const s=learned
+      ?{bg:'var(--green-bg)',c:'var(--green-dk)',lb:'Đã thuộc'}
+      :{bg:'var(--blue-bg)',c:'var(--blue-dk)',lb:'Chưa học'};
     const card=mk('div',{class:'card',style:'cursor:pointer;transition:all .2s'});
     card.innerHTML=`
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
         <span style="font-family:serif;font-size:30px;font-weight:700;line-height:1">${v.kanji}</span>
-        <span style="font-size:10px;border-radius:4px;padding:2px 7px;font-weight:700;background:${SC[v.status].bg};color:${SC[v.status].c}">${SC[v.status].lb}</span>
+        <span style="font-size:10px;border-radius:4px;padding:2px 7px;font-weight:700;background:${s.bg};color:${s.c}">${s.lb}</span>
       </div>
       <div style="font-size:11px;color:var(--text2);margin-bottom:4px">${v.kana}</div>
       <div style="font-size:13px;font-weight:700;margin-bottom:6px">${v.meaning}</div>
@@ -468,14 +472,19 @@ function openVocabModal(v){
 let selKanji=null;
 function buildKanji(){
   const grid=el('kanji-grid');
+  const p=loadProgress();
   KANJI.forEach((k,i)=>{
+    const learned=p.learnedKanji.includes(k.char);
+    const s=learned
+      ?{bg:'var(--green-bg)',c:'var(--green-dk)',lb:'Đã thuộc'}
+      :{bg:'var(--blue-bg)',c:'var(--blue-dk)',lb:'Chưa học'};
     const card=mk('div',{class:'card',style:'text-align:center;cursor:pointer;transition:all .2s'});
     card.innerHTML=`
       <div style="font-family:serif;font-size:32px;font-weight:700;line-height:1;margin-bottom:6px">${k.char}</div>
       <div style="font-size:10px;color:var(--red-dk);margin-bottom:1px;font-weight:700">On: ${k.on}</div>
       <div style="font-size:10px;color:var(--blue-dk);margin-bottom:5px;font-weight:700">Kun: ${k.kun}</div>
       <div style="font-size:11px;font-weight:700;margin-bottom:5px">${k.meaning}</div>
-      <span style="font-size:10px;background:${SC[k.status].bg};color:${SC[k.status].c};border-radius:4px;padding:2px 6px;font-weight:700">${SC[k.status].lb}</span>`;
+      <span style="font-size:10px;background:${s.bg};color:${s.c};border-radius:4px;padding:2px 6px;font-weight:700">${s.lb}</span>`;
     card.onmouseenter=()=>{card.style.borderColor='var(--red)';card.style.transform='translateY(-2px)'};
     card.onmouseleave=()=>{card.style.borderColor=selKanji===i?'var(--red)':'var(--border)';card.style.transform=''};
     card.onclick=()=>{
@@ -485,6 +494,13 @@ function buildKanji(){
     };
     grid.appendChild(card);
   });
+}
+
+function refreshKanjiGrid(){
+  el('kanji-grid').innerHTML='';
+  selKanji=null;
+  el('kanji-detail').style.display='none';
+  buildKanji();
 }
 
 function renderKanjiDetail(){
@@ -526,6 +542,8 @@ function buildGrammar(){
       </div>
       <span class="arr" style="color:var(--text3);font-size:18px;display:inline-block;transition:transform .2s">›</span>`;
     const body=mk('div',{class:'gacc-body'});
+    const p=loadProgress();
+    const learned=p.learnedGrammar.includes(i);
     body.innerHTML=`
       <div style="margin-bottom:10px">
         <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Cấu trúc</div>
@@ -539,7 +557,13 @@ function buildGrammar(){
         <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Ví dụ</div>
         ${g.examples.map(ex=>`<div style="background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--amber);padding:9px 11px;border-radius:0 var(--rs) var(--rs) 0;margin-bottom:5px"><div style="font-family:serif;font-size:14px;margin-bottom:2px">${ex.jp}</div><div style="font-size:12px;color:var(--text2)">${ex.vi}</div></div>`).join('')}
       </div>
-      <div style="background:var(--red-bg);border-left:3px solid var(--red);padding:9px 11px;border-radius:0 var(--rs) var(--rs) 0;font-size:12px;color:var(--red-dk)"><span style="font-weight:700">⚠️ Lỗi thường gặp: </span>${g.error}</div>`;
+      <div style="background:var(--red-bg);border-left:3px solid var(--red);padding:9px 11px;border-radius:0 var(--rs) var(--rs) 0;font-size:12px;color:var(--red-dk);margin-bottom:12px"><span style="font-weight:700">⚠️ Lỗi thường gặp: </span>${g.error}</div>
+      <div id="g-btn-${i}">
+        ${learned
+          ? `<span style="font-size:12px;color:var(--green-dk);font-weight:700">✓ Đã học mẫu câu này</span>`
+          : `<button class="btn btn-g" style="font-size:12px;padding:7px 16px" onclick="markGrammarLearned(${i});document.getElementById('g-btn-${i}').innerHTML='<span style=\\'font-size:12px;color:var(--green-dk);font-weight:700\\'>✓ Đã học mẫu câu này</span>'">+ Đánh dấu đã học (+10 XP)</button>`
+        }
+      </div>`;
     header.onclick=()=>{
       const isOpen=body.classList.contains('open');
       body.classList.toggle('open');
@@ -562,6 +586,8 @@ function buildFlashcard(){
 function renderFC(){
   const wrap=el('fc-wrap');
   if(fcIdx>=fcCards.length){
+    const goodCount = fcStats.good;
+    saveFCSession(goodCount);
     wrap.innerHTML=`
       <div style="text-align:center;padding:40px 20px">
         <div style="font-size:52px;margin-bottom:12px">🎉</div>
@@ -658,6 +684,7 @@ function renderQuiz(){
     return;
   }
   if(qScreen==='result'){
+    saveQuizResult(qCorrect, qData.length);
     const pct=Math.round(qCorrect/qData.length*100);
     wrap.innerHTML=`
       <div style="text-align:center;padding:30px 20px">
@@ -896,6 +923,7 @@ function markVocabLearned(vocabId){
     p.xp += 5;
     saveProgress(p);
     refreshAllUI();
+    renderVocab();
   }
 }
 
@@ -907,6 +935,7 @@ function markKanjiLearned(char){
     p.xp += 5;
     saveProgress(p);
     refreshAllUI();
+    refreshKanjiGrid();
   }
 }
 
